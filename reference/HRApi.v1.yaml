@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: HR API
+  description: For Fetching employee details
+  termsOfService: 'https://www.mobileheartbeat.com/'
+  contact:
+    name: Sooraj S.R
+    url: 'https://www.mobileheartbeat.com/'
+    email: sooraj.s.r@cycloides.co.in
+  license:
+    name: MH
+    url: 'https://www.mobileheartbeat.com/'
+  version: 1.0.0
+servers:
+  - url: 'https://virtserver.swaggerhub.com/sooraj.s.r/HR_API_OAS3.1/1.0.0'
+    description: SwaggerHub API Auto Mocking
+paths:
+  /employees:
+    get:
+      description: To feach employees details from database
+      parameters:
+        - name: bodyLimit
+          in: query
+          description: How much amout of data need to be fetched
+          required: false
+          style: form
+          explode: true
+          schema:
+            maximum: 30
+            minimum: 10
+            type: integer
+            example: 20
+        - name: pageLimit
+          in: query
+          description: Number of pages need to be fetched
+          required: false
+          style: form
+          explode: true
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: Successfully fetched employees details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employees'
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    employees:
+      type: array
+      description: Model containing array of employees
+      items:
+        $ref: '#/components/schemas/employee'
+      x-examples:
+        example-1:
+          - id: 4
+            employeeName: Ryan Philip
+            employeeTitle: Marketing Manager
+    employee:
+      properties:
+        id:
+          type: integer
+          example: 4
+        employeeName:
+          type: string
+          example: Ryan Philip
+        employeeTitle:
+          type: string
+          example: Marketing Manager
+      description: Model containing employee info
