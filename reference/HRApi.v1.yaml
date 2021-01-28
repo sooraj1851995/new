@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: HR API
+  title: HR API7
   description: For Fetching employee details
   termsOfService: 'https://www.mobileheartbeat.com/'
   contact:
